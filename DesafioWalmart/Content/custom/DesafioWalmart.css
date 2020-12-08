@@ -1,0 +1,23 @@
+﻿.imgLista {
+    margin-top: 15px;
+    width: 100px;
+}
+
+.inputText {
+    max-width: inherit !important;
+}
+
+.descripcionProducto {
+    font-style: italic;
+}
+
+.divWalmart {
+    margin-bottom: 30px;
+    background-color: #041e42;
+    color: #eee;
+}
+
+.resultadoBusqueda {    
+    max-height: 500px;
+    overflow: auto;
+}

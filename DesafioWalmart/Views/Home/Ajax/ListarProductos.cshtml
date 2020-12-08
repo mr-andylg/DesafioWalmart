@@ -1,0 +1,50 @@
+﻿@using DesafioWalmart.Models;
+
+@{
+    ViewBag.Title = "";
+    Layout = null;
+    string busqueda = ViewData["busqueda"] as string;
+    List<Producto> listaProductos = ViewData["listaProducto"] as List<Producto>;
+    bool esPalindromo = (bool)ViewData["esPalindromo"];
+    //int maxItemsPorFila = 3;
+    //int grupos = listaProductos.Count / maxItemsPorFila;
+    //int resto = listaProductos.Count % maxItemsPorFila;
+}
+
+<div class="row resultadoBusqueda">
+    @if (listaProductos.Count > 0)
+    {
+        <div class="col-md-12 text-center">
+            <small>Encontramos @(listaProductos.Count) resultado(s)</small>
+        </div>
+    }
+
+
+    @for (int i = 0; i < listaProductos.Count; i++)
+    {
+        Producto prod = listaProductos[i];
+        <div class="col-md-4 text-center">
+            <p><img class="imgLista" src="http://@prod.Image" /></p>
+            <h3>@prod.Brand</h3>
+            <small>id: @prod.Id</small>
+            <p class="descripcionProducto">@prod.Description</p>
+            @if (esPalindromo)
+            {
+                <h4>$@(prod.Price / 2)</h4>
+                <h6><s>$@prod.Price</s></h6>
+            }
+            else
+            {
+                <h4>$@prod.Price</h4>
+            }
+        </div>
+    }
+
+    @if (listaProductos.Count == 0)
+    {
+        <div class="col-md-12 text-center">
+            <h2>Lo sentimos, no encontramos resultados</h2>
+            <p>Intente nuevamente, por favor</p>
+        </div>
+    }
+
