@@ -24,7 +24,7 @@ namespace DesafioWalmart.Controllers
             try
             {
                 int minCharToSearch = Parametros.MinCharToSearch();
-                string msgErrorGenerico = "Busque un número o al menos " + minCharToSearch + " carácteres de texto";
+                string msgErrorGenerico = "Busque un ID numérico o un texto de " + minCharToSearch + " o más caracteres";
                 if (string.IsNullOrEmpty(busqueda))
                 {
                     return Json(new { Result = false, Cod = 1, Msg = msgErrorGenerico });

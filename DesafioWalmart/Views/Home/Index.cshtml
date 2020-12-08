@@ -22,18 +22,16 @@
         <button type="button" id="btnBuscar" class="btn btn-warning disabled" onclick="BuscarProducto()" disabled>
             <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar
         </button>
-    </div>
-    
-    
+    </div>    
 </div>
-
+<div id="divError">
+    @*en caso de error, aca se muestra el error*@
+</div>
 <div id="resultadoBusqueda" style="min-height: 500px;">
     @*se carga por ajax el resultado de la busqueda*@
 </div>
 
-<div id="divError">
-    @*en caso de error, aca se muestra el error*@
-</div>
+
 
 <script>
     const MIN_CHAR_TO_SEARCH = @(minCharToSearch);

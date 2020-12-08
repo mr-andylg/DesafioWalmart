@@ -1,9 +1,11 @@
-﻿$(document).ready(function () {
+﻿//se registra el evento
+$(document).ready(function () {
     $("#txtBuscador").on("keyup", function (event) {
         InputSearch_OnKeyUp(event);
     });    
 });
 
+//realiza la peticion ajax
 function BuscarProducto() {
     let currentHtmlResultado = $("#resultadoBusqueda").html();
     let htmlCargando = "<div class= 'loading' style = 'text-align:center' > <img style='vertical-align:midle' src='/Content/gif/ajax-loader.gif' alt='loading' /> <br />Cargando...</div >";
@@ -30,19 +32,37 @@ function BuscarProducto() {
     });
 }
 
+//manejar el tecleo en el buscador
 function InputSearch_OnKeyUp(event) {
     
     let inputSearch = $(event.currentTarget);
     let btnSearch = $("#btnBuscar");
     let busqueda = inputSearch.val();
-    if ($.isNumeric(busqueda) || busqueda.length >= MIN_CHAR_TO_SEARCH) {
+    if (ValidaEstadoBotonBuscar()) {
         btnSearch.removeClass("disabled");
         btnSearch.removeAttr("disabled");
+
+        //revisamos si es un enter
+        if (event.key === "Enter") {
+            event.preventDefault();
+            btnSearch.trigger("click");
+        }
+
     }
     else {
         btnSearch.addClass("disabled");
-        btnSearch.attr("disabled", "");
+        btnSearch.prop("disabled", true);
     }
+
+    
+}
+
+function ValidaEstadoBotonBuscar() {
+    let inputSearch = $("#txtBuscador");    
+    let busqueda = inputSearch.val();
+    
+    return $.isNumeric(busqueda) || busqueda.length >= MIN_CHAR_TO_SEARCH;
+
 }
 
 function MostrarError(errorText) {
