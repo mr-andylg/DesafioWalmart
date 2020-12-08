@@ -11,7 +11,7 @@
     //int resto = listaProductos.Count % maxItemsPorFila;
 }
 
-<div class="row resultadoBusqueda">
+<div id="divListaProductos" class="row resultadoBusqueda">
     @if (listaProductos.Count > 0)
     {
         <div class="col-md-12 text-center">
@@ -23,28 +23,29 @@
     @for (int i = 0; i < listaProductos.Count; i++)
     {
         Producto prod = listaProductos[i];
-        <div class="col-md-4 text-center">
+        <div class="producto col-md-4 text-center">
             <p><img class="imgLista" src="http://@prod.Image" /></p>
             <h3>@prod.Brand</h3>
             <small>id: @prod.Id</small>
             <p class="descripcionProducto">@prod.Description</p>
             @if (esPalindromo)
             {
-                <h4>$@(prod.Price / 2)</h4>
-                <h6><s>$@prod.Price</s></h6>
+                <h4 class="precioDescuento">$@(prod.Price / 2)</h4>
+                <h6 class="precio"><s>$@prod.Price</s></h6>
             }
             else
             {
-                <h4>$@prod.Price</h4>
+                <h4 class="precio">$@prod.Price</h4>
             }
         </div>
     }
 
     @if (listaProductos.Count == 0)
     {
-        <div class="col-md-12 text-center">
+        <div class="sinDatos col-md-12 text-center">
             <h2>Lo sentimos, no encontramos resultados</h2>
             <p>Intente nuevamente, por favor</p>
         </div>
     }
 
+</div>
