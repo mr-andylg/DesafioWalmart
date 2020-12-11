@@ -7,6 +7,11 @@ namespace DesafioWalmart.Helper
 {
     public static class Utiles
     {
+        /// <summary>
+        /// Verifica si un texto ingresado es palindromo o no
+        /// </summary>
+        /// <param name="palabra">el texto a verificar</param>
+        /// <returns>bool dependiendo si determina que es palindromo o no</returns>
         public static bool EsPalindromo(string palabra)
         {
             

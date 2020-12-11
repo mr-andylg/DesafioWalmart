@@ -1,4 +1,5 @@
-﻿using DesafioWalmart.Models;
+﻿
+using DataLayer.Models;
 using MongoDB.Bson.Serialization;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace DesafioWalmart
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            //registramos el modelo que representa un objeto de nuestra bd
             BsonClassMap.RegisterClassMap<Producto>();
         }
     }

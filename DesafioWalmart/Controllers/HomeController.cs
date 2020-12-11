@@ -1,6 +1,8 @@
-﻿using DesafioWalmart.Data;
+﻿
+using DataLayer.Data;
+using DataLayer.Models;
 using DesafioWalmart.Helper;
-using DesafioWalmart.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,24 @@ namespace DesafioWalmart.Controllers
     public class HomeController : Controller
     {
 
-
+        /// <summary>
+        /// Carga nuestra web de inicio
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            //cargamos el minimo de caracteres antes de empezar a buscar para ser usado en el js
             ViewData["minCharToSearch"] = Parametros.MinCharToSearch();
             return View();
         }
 
+        /// <summary>
+        /// Metodo para ser invocado por ajax
+        /// Lista los productos segun la consulta. Valida que se cumplan los largos minimos.
+        /// En caso de error devuelve un json con un mensaje.
+        /// </summary>
+        /// <param name="busqueda"></param>
+        /// <returns></returns>
         public ActionResult ListarProductos(string busqueda)
         {
             try
@@ -43,6 +56,7 @@ namespace DesafioWalmart.Controllers
                 ProductosData pd = new ProductosData();
                 List<Producto> listaProductos = pd.BuscarProducto(busqueda);
 
+                //Le enviamos datos a la vista para tomar decisiones en el dibujado
                 ViewData["busqueda"] = busqueda;
                 ViewData["listaProducto"] = listaProductos != null? listaProductos : new List<Producto>();
                 ViewData["esPalindromo"] = Utiles.EsPalindromo(busqueda);
@@ -53,10 +67,7 @@ namespace DesafioWalmart.Controllers
             catch (Exception ex)
             {
                 return Json(new { Result = false, Cod = 2, Msg = "Error en la busqueda.\n" + ex.Message });
-            }
-            
-
-            
+            }                        
         }
     }
 }

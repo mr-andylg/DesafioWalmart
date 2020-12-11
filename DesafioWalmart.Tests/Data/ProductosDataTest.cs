@@ -1,5 +1,5 @@
-﻿using DesafioWalmart.Data;
-using DesafioWalmart.Models;
+﻿using DataLayer.Data;
+using DataLayer.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

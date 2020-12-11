@@ -1,5 +1,4 @@
-﻿using DesafioWalmart.DB;
-using DesafioWalmart.Models;
+﻿using DataLayer.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -7,20 +6,34 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 
-namespace DesafioWalmart.Data
+namespace DataLayer.Data
 {
     
 public class ProductosData
     {
 
         private IMongoDatabase db;
+        //el nombre de la collection a usar en este data
         private const string COLLECTION_PRODUCTOS = "products";
 
+        /// <summary>
+        /// Inicializacion del objeto data, iniciando la conexion a la bd y a la collecction que vamos a usar
+        /// </summary>
         public ProductosData()
         {
-            db = MongoDBConnect.GetDatabase(System.Web.Configuration.WebConfigurationManager.AppSettings["MongoDB_DBProductos"]);
+            if (MongoDBConnect.Cliente == null)
+            {
+                MongoDBConnect.IniciarConexion(System.Configuration.ConfigurationManager.AppSettings["MongoDB_Connect"]);
+            }
+            db = MongoDBConnect.GetDatabase(System.Configuration.ConfigurationManager.AppSettings["MongoDB_DBProductos"]);
         }
 
+        /// <summary>
+        /// Busca uno o más productos segun el string de busqueda
+        /// Si es un numero, intenta buscar exactamente el string. Si es texto, comienza a bucar con like en los campos Brand y Description
+        /// </summary>
+        /// <param name="busqueda"></param>
+        /// <returns>Lista con los productos encontrados o null en caso de haber error</returns>
         public List<Producto> BuscarProducto(string busqueda)
         {
             List<Producto> listaResultado = null;

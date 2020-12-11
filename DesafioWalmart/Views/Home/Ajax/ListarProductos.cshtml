@@ -1,4 +1,4 @@
-﻿@using DesafioWalmart.Models;
+﻿@using DataLayer.Models;
 
 @{
     ViewBag.Title = "";
@@ -6,9 +6,7 @@
     string busqueda = ViewData["busqueda"] as string;
     List<Producto> listaProductos = ViewData["listaProducto"] as List<Producto>;
     bool esPalindromo = (bool)ViewData["esPalindromo"];
-    //int maxItemsPorFila = 3;
-    //int grupos = listaProductos.Count / maxItemsPorFila;
-    //int resto = listaProductos.Count % maxItemsPorFila;
+    
 }
 
 <div id="divListaProductos" class="row resultadoBusqueda">
@@ -28,6 +26,7 @@
             <h3>@prod.Brand</h3>
             <small>id: @prod.Id</small>
             <p class="descripcionProducto">@prod.Description</p>
+            @*si es palindromo, aplicamos descuento en el producto*@
             @if (esPalindromo)
             {
                 <h4 class="precioDescuento">$@(prod.Price / 2)</h4>
@@ -40,6 +39,7 @@
         </div>
     }
 
+    @*si no hay datos, mostramos un mensaje especial*@
     @if (listaProductos.Count == 0)
     {
         <div class="sinDatos col-md-12 text-center">

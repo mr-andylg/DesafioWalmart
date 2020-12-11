@@ -1,7 +1,4 @@
-﻿@using DesafioWalmart.Models;
-@using DesafioWalmart.Helper;
-
-@{
+﻿@{
     ViewBag.Title = "Desafio Walmart";
     int minCharToSearch = (int)ViewData["minCharToSearch"];
 }
@@ -32,7 +29,7 @@
 </div>
 
 
-
+@*guardamos en una constante los caracteres minimos para modificar el estado del boton buscar*@
 <script>
     const MIN_CHAR_TO_SEARCH = @(minCharToSearch);
 </script>

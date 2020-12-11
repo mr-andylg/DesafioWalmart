@@ -1,4 +1,4 @@
-﻿//se registra el evento
+﻿//se registra el evento de tecleo
 $(document).ready(function () {
     $("#txtBuscador").on("keyup", function (event) {
         InputSearch_OnKeyUp(event);
@@ -37,7 +37,7 @@ function InputSearch_OnKeyUp(event) {
     
     let inputSearch = $(event.currentTarget);
     let btnSearch = $("#btnBuscar");
-    let busqueda = inputSearch.val();
+    
     if (ValidaEstadoBotonBuscar()) {
         btnSearch.removeClass("disabled");
         btnSearch.removeAttr("disabled");
@@ -57,6 +57,7 @@ function InputSearch_OnKeyUp(event) {
     
 }
 
+//validamos el largo de la busqueda para saber si debemos habilitar o deshabilitar el boton
 function ValidaEstadoBotonBuscar() {
     let inputSearch = $("#txtBuscador");    
     let busqueda = inputSearch.val();
@@ -65,6 +66,7 @@ function ValidaEstadoBotonBuscar() {
 
 }
 
+//muestra el mensaje de error obtenido desde el back
 function MostrarError(errorText) {
     let htmlError = "<div class=\"alert alert-danger alert-dismissible fade in\">\n    <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n    <strong>¡Error!</strong> <div>" + errorText + "</div>\n</div>\n";
     $("#divError").html(htmlError);
